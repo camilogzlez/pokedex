@@ -1,0 +1,29 @@
+
+<header align="center">
+  <%# <%= button_to "Home", root_path, method: :get %>
+</header>
+
+<div class="result-box">
+  <div align="center">
+    <h1><% @pokemons_total.each do |pokemon| %></h1>
+
+    <h1>Name: <%= pokemon.values[10] %></h1>
+   <%= image_tag "#{pokemon.values[14].values[8].values[1].values[0]}" %>
+    <h1>Type: <% pokemon.values[16].each do |type|%></h1> 
+      </h1><%= type.values[1].values[0] %></h1>
+    <h1><% end %></h1>
+
+    <h1>Weight: <%= pokemon.values[17] %></h1>
+    <h1>Habilities: <% pokemon.values[0].each do |hability|%></h1> 
+      </h1><%= hability.values[0].values[0] %></h1>
+    <h1><% end %></h1>
+    
+    <h1><% end %></h1>
+
+
+
+
+  </div>
+
+
+</div>
