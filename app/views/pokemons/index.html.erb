@@ -7,7 +7,7 @@
   <div align="center">
     <h1><% @pokemons_total.each do |pokemon| %></h1>
 
-    <h1>Name: <%= pokemon.values[10] %></h1>
+    <h1>Name: <%=link_to pokemon.values[10], pokemon_path(pokemon.values[6]) %></h1>
    <%= image_tag "#{pokemon.values[14].values[8].values[1].values[0]}" %>
     <h1>Type: <% pokemon.values[16].each do |type|%></h1> 
       </h1><%= type.values[1].values[0] %></h1>
@@ -20,7 +20,7 @@
     
     <h1><% end %></h1>
 
-
+   <%# <h5><%= link_to experience.title, wine_experience_path(experience) %></h5> %>
 
 
   </div>
