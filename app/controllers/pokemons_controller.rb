@@ -1,37 +1,31 @@
+# frozen_string_literal: true
+
 class PokemonsController < ApplicationController
-
-  require 'rest-client'
-
   def index
-    conn = Faraday.new("https://pokeapi.co")
-    response = conn.get("/api/v2/pokemon/")
-    @pokemon = JSON.parse(response.body, symbolize_names: true)
-    @pokemons = @pokemon.values[3]
-    @pokemons_total = []
+    response = PokeService.conn.get('/api/v2/pokemon/')
+    @pokemons = PokeService.parse_data(response)[:results]
+    # @pokemons = @pokemon[:results]
+    @pokemons_details = []
 
     @pokemons.each do |pokemon|
-      response_2 = Faraday.get(pokemon.values[1])
-     @pokemon_2 = JSON.parse(response_2.body, symbolize_names: true)
-      @pokemons_total << @pokemon_2
-    end 
-    #byebug
+      response2 = Faraday.get(pokemon[:url])
+      @pokemon2 = PokeService.parse_data(response2)
+      @pokemons_details << @pokemon2
+    end
+    # byebug
   end
 
   def show
     pokemon = params[:id]
     #  byebug
-    conn = Faraday.new("https://pokeapi.co")
-    response = conn.get("/api/v2/pokemon/#{pokemon}")
-    @pokemon = JSON.parse(response.body, symbolize_names: true)
 
-    response_2 = conn.get("/api/v2/evolution-chain/#{pokemon}")
-    @pokemon_evolutions = JSON.parse(response_2.body, symbolize_names: true)
+    response = PokeService.conn.get("/api/v2/pokemon/#{pokemon}")
+    @pokemon = PokeService.parse_data(response)
 
-    response_3 = conn.get("/api/v2/pokemon-species/#{pokemon}")
-    @pokemon_especies = JSON.parse(response_3.body, symbolize_names: true)
+    response2 = PokeService.conn.get("/api/v2/evolution-chain/#{pokemon}")
+    @pokemon_evolutions = PokeService.parse_data(response2)
 
-
-
+    response3 = PokeService.conn.get("/api/v2/pokemon-species/#{pokemon}")
+    @pokemon_especies = PokeService.parse_data(response3)
   end
-
 end
