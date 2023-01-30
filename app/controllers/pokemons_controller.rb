@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
+require 'will_paginate/array'
 class PokemonsController < ApplicationController
   def index
-    response = PokeService.conn.get('/api/v2/pokemon/')
-    @pokemons = PokeService.parse_data(response)[:results]
+    response = PokeService.conn.get('/api/v2/pokemon/?limit=1279')
+    @pokemons = PokeService.parse_data(response)[:results].paginate(page: params[:page], per_page: 20)
     # @pokemons = @pokemon[:results]
     @pokemons_details = []
 

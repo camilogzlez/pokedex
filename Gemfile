@@ -14,9 +14,11 @@ gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'bootstrap', '~> 5.2.2'
 gem 'faraday'
-gem 'rest-client'
 gem 'turbolinks', '~> 5'
+gem 'will_paginate', '~> 3.1'
+gem 'will_paginate-bootstrap', '~> 0.2.5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
@@ -56,3 +58,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'cssbundling-rails', '~> 1.1'
