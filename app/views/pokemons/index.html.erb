@@ -1,22 +1,27 @@
-
-<header align="center">
-  <%# <%= button_to "Home", root_path, method: :get %>
-</header>
-
-<div class="result-box">
-  <div align="center">
-    <h1><% @pokemons_details.each do |pokemon| %></h1>
-      <h1>Name: <%=link_to pokemon[:name], pokemon_path(pokemon[:id]) %></h1>
-      <%= image_tag "#{pokemon[:sprites][:other][:home][:front_default]}" %>
-      <h1>Type: <% pokemon[:types].each do |type|%></h1> 
-      </h1><%= type[:type][:name] %></h1>
-    <h1><% end %></h1>
-    <h1>Weight: <%= pokemon[:weight] %></h1>
-    <h1>Habilities: <% pokemon[:abilities].each do |ability|%></h1> 
-      </h1><%= ability[:ability][:name] %></h1>
-    <h1><% end %></h1>
-    <h1><% end %></h1>
-<%= will_paginate @pokemons %>
+  <div >
+  <h2 class= "index-message"> ALL POKEMONS!! </h2>
   </div>
+<div class="container">
+<div class="row justify-content-center card-container">
 
+  <% @pokemons_details.each do |pokemon| %>
+     <div class="index-card">
+     <%= image_tag "#{pokemon[:sprites][:other][:home][:front_default]}" %>
+      
+      <div class="card-product-infos">
+      <h2>Name: <%=link_to pokemon[:name], pokemon_path(pokemon[:id]) %></h2>
+      <p>Type: <% pokemon[:types].each do |type|%>-<%= type[:type][:name]  %>
+      <% end %></p>
+      <p>Weight: <%= pokemon[:weight] %></p>
+      <p>Habilities: <% pokemon[:abilities].each do |ability|%> 
+        -<%= ability[:ability][:name] %>
+        <% end %></p>
+      
+    </div>
+     </div>
+    <% end %>
+    
 </div>
+<%= will_paginate(@pokemons, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
+</div>
+

@@ -4,7 +4,7 @@ require 'will_paginate/array'
 class PokemonsController < ApplicationController
   def index
     response = PokeService.conn.get('/api/v2/pokemon/?limit=1279')
-    @pokemons = PokeService.parse_data(response)[:results].paginate(page: params[:page], per_page: 20)
+    @pokemons = PokeService.parse_data(response)[:results].paginate(page: params[:page], per_page: 10)
     @pokemons_details = []
 
     @pokemons.each do |pokemon|
@@ -32,7 +32,7 @@ class PokemonsController < ApplicationController
     @pokemon_especies = PokeService.parse_data(response3)
   rescue StandardError => e
     logger.info e
-    redirect_to pokemons_path,
+    redirect_to root_path,
                 flash: { alert: 'No info available about this pokemon, you have been redirected to main page' }
   end
 end

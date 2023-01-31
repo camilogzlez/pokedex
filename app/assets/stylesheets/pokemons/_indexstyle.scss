@@ -1,0 +1,311 @@
+.index-message{
+  font-family: Silkscreen;
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding-left: 20px;
+  padding-top: 9px;
+  padding-bottom: 1px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  
+}
+
+
+
+.index-card {
+  display: flex;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.637);
+  box-shadow: 0 0 10px rgba(92, 89, 89, 0.024);
+  width: 450px;
+  height: 266px;
+  margin: 10px;
+  border-radius: 5px;
+  
+}
+
+.index-card > img {
+   height: 150px;
+  width: 55%;
+  border-radius: 8px;
+  margin: 30px 7px;
+}
+
+.index-card h2 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  font-family: 'Silkscreen'
+  
+}
+
+.index-card p {
+  font-size: 14px;
+  opacity: .7;
+  margin-bottom: 6px;
+  text-align: left;
+ font-family: 'Silkscreen';
+ color: black;
+}
+
+.index-card-description{
+  color: black;
+}
+
+
+.index-card .card-product-infos {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 2px;
+  display: flex;
+   flex-direction: column;
+   width: 400px;
+  position: relative;
+  align-self: center;
+  
+  
+}
+
+
+.card-product-infos .card-trip-user {
+  position: absolute;
+  right: -50px;
+  top: 1px;
+  width: 40px;
+}
+
+h2.card-trip-pricing{
+  margin-left: 346px;
+  color: grey;
+    font-size: 14px;
+
+}
+
+.price {
+   position: absolute;
+  right: 8px;
+  bottom: 28px;
+}
+
+
+.pin {
+   position: absolute;
+    left: -336px;
+  top: -9px;
+  width: 40px;
+  p{
+    font-size: 20px;
+  }
+}
+
+.mas_info{
+  margin-top: 19px;
+}
+
+  // .btn.btn-info{
+  //   color: white;
+  //   font-family: Montserrat;
+  //   border-radius: 5px;
+  // }
+
+   .btn.btn-info:hover{
+    background-color: #167FFB;
+  }
+
+
+
+.supercontainer{
+
+.row{
+  width: 1500px;
+  margin-left: -300px;
+}
+}
+
+.supercontainer{
+  display: flex;
+ 
+}
+
+
+.container{
+  background-color: #BEE1FF;
+  margin: 0;
+  max-width: fit-content;
+}
+
+.container-map{
+
+  width: 800px;
+  // position: fixed; /* Set the navbar to fixed position */
+  right: 144px;
+
+}
+
+ #map{
+    border-bottom: 4px solid #aba9af;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    margin-top: 0px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    z-index:0;
+    position: sticky;
+    top:0;
+  }
+  #index-map{
+    position: absolute;
+    top: 241px;
+    right: 66px;
+  }
+
+  .map-header{
+    margin-top:12px;
+    font-family: Montserrat;
+    background-color: rgba(153, 146, 146, 0.568);
+    padding: 10px;
+    color: white;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    h4{
+       font-family: Montserrat;
+       font-size: 1.2rem;
+    }
+    h5{
+      font-family: Montserrat;
+      font-size: 1.1rem;
+    }
+  }
+
+@media (max-width: 1334px) {
+  .my-container {
+    display: none;
+  }
+   #index-map{
+    display: none;
+  }
+  .card-container{
+    width: 100%;
+  }
+}
+
+  
+
+@media (max-width: 1790px) {
+  .my-container {
+    width: 600px;
+  }
+
+  .card-container{
+    width: 100%;
+  }
+  
+}
+
+
+@media (max-width: 1588px) {
+  .my-container {
+    width: 500px;
+  }
+  #index-map{
+    display: none;
+  }
+  .card-container{
+    width: 100%;
+  }
+}
+       
+
+@media (max-width: 1650px) {
+ 
+  #index-map{
+    display: none;
+  }
+
+}
+@media (max-width: 1488px) {
+  .my-container {
+    width: 300px;
+  }
+  .supercontainer .row {
+    margin-left: -250px; 
+  }
+  #index-map{
+    display: none;
+  }
+  .card-container{
+    width: 100%;
+  }
+}
+
+@media (max-width: 1074px) {
+  .supercontainer .row {
+    margin-left: -2px;
+  }
+   #index-map{
+    display: none;
+  }
+  .card-container{
+    width: 100%;
+  }
+}
+
+@media (max-width: 818px) {
+  .index-card {
+    width: 568px;
+  }
+  .card-product-infos .card-trip-user {
+    position: absolute;
+    right: 516px;
+    top: 24px;
+    width: 40px;  
+  }
+
+  .new_experience_link {
+   right: 147px;
+   }
+
+  .price {
+    right: 138px;
+    bottom: 27px;
+  }
+
+  .footer {
+    // padding: 0px 40px;
+    width: 590px;
+  }
+  .nav-item.dropdown{
+    position: fixed;
+    right: 96px;
+    top: 30px;
+  }
+  .index-message{
+    width: 590px;
+  }
+
+  #index-map{
+    display: none;
+  }
+  .card-container{
+    width: 100%;
+  }
+}
+
+
+  footer {
+   
+    padding: 0px 40px;
+  
+    width: 590px;
+}    
+       
+.footer {
+   
+    z-index: 1;
+}
+
+@media (max-width: 800px) {
+   
+   .supercontainer .row {
+    margin-left: -2px;
+}
+}
