@@ -4,23 +4,23 @@
 <div class="container">
 <div class="row justify-content-center card-container">
 
-  <% @pokemons_details.each do |pokemon| %>
+  <% @pokemons.each do |pokemon| %>
      <div class="index-card">
-     <%= image_tag "#{pokemon[:sprites][:other][:home][:front_default]}" %>
-      
+     <%= image_tag "#{pokemon.image_url}" %>
+
       <div class="card-product-infos">
-      <h2>Name: <%=link_to pokemon[:name], pokemon_path(pokemon[:id]) %></h2>
-      <p>Type: <% pokemon[:types].each do |type|%>-<%= type[:type][:name]  %>
+      <h2>Name: <%=link_to pokemon.name, pokemon_path(pokemon.id) %></h2>
+      <p>Type: <% pokemon.types.each do |type|%>-<%= type.name  %>
       <% end %></p>
-      <p>Weight: <%= pokemon[:weight] %></p>
-      <p>Habilities: <% pokemon[:abilities].each do |ability|%> 
-        -<%= ability[:ability][:name] %>
+      <p>Weight: <%= pokemon.weight %></p>
+      <p>Abilities: <% pokemon.abilities.each do |ability|%>
+         -<%= ability.name %>
         <% end %></p>
-      
+
     </div>
      </div>
     <% end %>
-    
+
 </div>
 <%= will_paginate(@pokemons, :renderer => WillPaginate::ActionView::Bootstrap4LinkRenderer) %>
 </div>

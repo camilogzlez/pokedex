@@ -1,0 +1,47 @@
+.show-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 600px;
+  /* Adjust width to your preference */
+  margin: 20px auto;
+  /* Center align and add spacing */
+}
+
+.card-product-infos {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.text-black {
+  color: #333;
+  /* Adjust text color for better contrast */
+}
+
+.btn-primary {
+  background-color: #2A75BB;
+  /* Primary button color */
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #1e5aa9;
+  /* Darker shade on hover */
+}
+
+@media (max-width: 768px) {
+  .show-card {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .show-card {
+    padding: 15px;
+  }
+}

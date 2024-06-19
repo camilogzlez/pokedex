@@ -2,16 +2,22 @@
   <div class="row justify-content-center card-container">
      <div class="show-card">
        <div class="card-product-infos">
-         <h2>Name: <%= @pokemon[:name].capitalize %></h2>
-         <%= image_tag "#{@pokemon[:sprites][:other][:home][:front_default]}" %>
-         <p>Type: <% @pokemon[:types].each do |type|%>-<%= type[:type][:name]  %>
+        <div class= "controls">
+          <div class= "name">
+             <h2>Name: <%= @pokemon.name.capitalize %></h2>
+           </div>
+           <%= link_to 'Edit', edit_pokemon_path(@pokemon), class: 'nav-link' %>
+           <%= button_to 'Delete', pokemon_path(@pokemon), method: :delete, class: 'delete-button nav-link' %>
+         </div>
+         <%= image_tag "#{@pokemon.image_url}" %>
+         <p>Type: <% @pokemon.types.each do |type|%>-<%= type.name  %>
          <% end %></p>
 
-         <p>Weight: <%= @pokemon[:weight] %></p>
-         <p>Habilities: <% @pokemon[:abilities].each do |ability|%>-<%= ability[:ability][:name] %>
+         <p>Weight: <%= @pokemon.weight %></p>
+         <p>Abilities: <% @pokemon.abilities.each do |ability|%>-<%= ability.name %>
          <% end %></p>
-         <p>Next evolution: >> <%= @pokemon_evolutions[:chain][:evolves_to][0][:species][:name] %> </p>
-         <p>Description: <%= @pokemon_especies[:flavor_text_entries][0][:flavor_text] %> </p>
+         <p>Next evolution: >> <%= @pokemon.next_evolution %> </p>
+         <p>Description: <%= @pokemon.description %> </p>
        </div>
      </div>
   </div>

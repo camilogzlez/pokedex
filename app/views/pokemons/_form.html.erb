@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="row justify-content-center card-container">
+    <div class="show-card">
+      <div class="card-product-infos">
+        <%= simple_form_for @pokemon do |f| %>
+          <div class="form-group">
+            <%= f.label "Pokemon Name", class: "text-black" %>
+            <%= f.text_field :name, class: "form-control", placeholder: "Name" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Pokemon's Types:", class: "text-black mr-3" %>
+            <%= f.association :types, input_html: { class:"form-control",  name: "types[]", multiple: 'multiple' }, label: false %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Pokemon's Abilities", class: "text-black mr-3" %>
+            <%= f.association :abilities, input_html: { class:"form-control", name: "abilities[]", multiple: 'multiple' }, label: false %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Weight", class: "text-black" %>
+            <%= f.number_field :weight, class: "form-control", placeholder: "Weight" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Description", class: "text-black" %>
+            <%= f.text_area :description, class: "form-control", placeholder: "Descripe your Pokemon" %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label "Pokemon Image Url.", class: "text-black" %>
+            <%= f.text_field :image_url, class: "form-control", placeholder: "Image Url" %>
+          </div>
+
+          <%= f.submit "Save Pokemon", class: "btn btn-primary mt-3" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

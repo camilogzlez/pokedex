@@ -1,38 +1,65 @@
 # frozen_string_literal: true
 
 require 'will_paginate/array'
+
 class PokemonsController < ApplicationController
   def index
-    response = PokeService.conn.get('/api/v2/pokemon/?limit=1279')
-    @pokemons = PokeService.parse_data(response)[:results].paginate(page: params[:page], per_page: 10)
-    @pokemons_details = []
-
-    @pokemons.each do |pokemon|
-      response2 = Faraday.get(pokemon[:url])
-      @pokemon2 = PokeService.parse_data(response2)
-      @pokemons_details << @pokemon2
-    end
-  rescue StandardError => e
-    logger.info e
-    redirect_to pokemons_path, flash: { alert: 'No service at this moment' }
-    # byebug
+     @pokemons = Pokemon.all.paginate(page: params[:page], per_page: 10)
   end
 
   def show
-    pokemon = params[:id]
-    #  byebug
-
-    response = PokeService.conn.get("/api/v2/pokemon/#{pokemon}")
-    @pokemon = PokeService.parse_data(response)
-
-    response2 = PokeService.conn.get("/api/v2/evolution-chain/#{pokemon}")
-    @pokemon_evolutions = PokeService.parse_data(response2)
-
-    response3 = PokeService.conn.get("/api/v2/pokemon-species/#{pokemon}")
-    @pokemon_especies = PokeService.parse_data(response3)
+    @pokemon = Pokemon.find(params[:id])
   rescue StandardError => e
     logger.info e
-    redirect_to root_path,
-                flash: { alert: 'No info available about this pokemon, you have been redirected to main page' }
+    redirect_to root_path
+  end
+
+  def new
+    @pokemon = Pokemon.new # Needed to instantiate the form_with
+  end
+
+  def create
+    @pokemon = Pokemon.new(pokemon_params)
+    if @pokemon.save
+      params[:types].shift
+      params[:types].each do |id|
+        type = Type.find(id.to_i)
+        # byebug
+        @pokemon.types << type unless @pokemon.types.include?(type)
+      end
+      params[:abilities].shift
+      params[:abilities].each do |id|
+        ability = Ability.find(id.to_i)
+        @pokemon.abilities << ability unless @pokemon.abilities.include?(ability)
+      end
+    redirect_to pokemon_path(@pokemon),
+    flash: { notice: 'Your Pokemon was created' }
+    else
+      render :new,
+      flash: { alert: 'It was not possible to create the pokemon' }
+    end
+  end
+
+  def edit
+    @pokemon = Pokemon.find(params[:id])
+  end
+
+  def update
+    @pokemon = Pokemon.find(params[:id])
+    @pokemon.update(pokemon_params)
+    redirect_to pokemon_path(@pokemon),
+    flash: { notice: 'Your Pokemon was edited' }
+  end
+
+  def destroy
+    @pokemon = Pokemon.find(params[:id])
+    @pokemon.destroy
+    redirect_to pokemons_path, flash: { notice: 'Your Pokemon was deleted' }
+  end
+
+  private
+
+  def pokemon_params
+    params.require(:pokemon).permit(:name, :description, :weight, :next_evolution, :image_url, types: [], abilities: [])
   end
 end
